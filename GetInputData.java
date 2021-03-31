@@ -50,26 +50,34 @@ import java.util.Scanner;
 public class GetInputData {
     public static void main(String args[])
     {
+        // This is for the string name
         String str = null;
         boolean debug = false;
         boolean x = true;
         Scanner in = new Scanner(System.in);
-        while(x) {
+             
+
+        try{
             System.out.println("\tWhats your name?: ");
             str = in.nextLine();
-
-            x = str.matches(".*\\d.*");
-            if(debug){
-                System.out.println(x);
+            NoInt(str);
+            System.out.println("\n\n\tHello " + str + "whats your age?");
+            int age = in.nextInt();
+            System.out.println("Your age is"+str);
+        }
+        catch(NoIntInString ex){
+             System.out.println(ex.getMessage());
             }
+                
 
-            if (x) {
-                System.out.println("\tPlease enter a valid name. Name can't contain numbers\n\n");
             }
-            }   System.out.println("\n\n\tHello " + str + "whats your age?");
-                int age = in.nextInt();
-
-
+         public static void NoInt(Stirng str) throws NoIntInString{
+            for(int i=0; i < str.length(); i++) {
+            Boolean flag = Character.isLetter(str.charAt(i));
+            if(flag) {
+                throw new NoIntInString("Name contains numbers, please try agiain");        
         }
 
     }
+}
+}
